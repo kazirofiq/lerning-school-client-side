@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaSchool, FaUser } from 'react-icons/fa';
+import RightSideNav from '../RightSideNav/RightSideNav';
 
 const Header = () => {
     return (
@@ -19,6 +20,9 @@ const Header = () => {
                         
                         <li><Link to="/statics">Static</Link></li>
                         <li><Link to="/blog">Blog</Link></li>
+                        <div className='lg:hidden'>
+                                <RightSideNav></RightSideNav>
+                        </div>
                     </ul>
                     </div>
                 </div>
@@ -83,6 +87,8 @@ const Header = () => {
                                 </li>
                                 
                             </ul>
+
+                          
 
                     </div>
                 </div>
