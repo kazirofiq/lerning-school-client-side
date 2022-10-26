@@ -1,4 +1,5 @@
 import React from 'react';
+import { Footer } from 'react-daisyui';
 import { Outlet } from 'react-router-dom';
 import Header from '../Pages/Share/Header/Header';
 
@@ -7,6 +8,7 @@ const Main = () => {
         <div>
             <Header></Header>
             <Outlet></Outlet>
+            <Footer></Footer>
         </div>
     );
 };
