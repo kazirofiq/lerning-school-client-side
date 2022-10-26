@@ -8,6 +8,7 @@ import Blog from '../Others/Blog/Blog';
 import Profile from '../Others/Profile/Profile';
 import TermsCondition from '../Others/TermsCondition/TermsCondition';
 import Category from '../Pages/Category/Category/Category';
+import Class from '../Pages/Class/Class';
 import Education from '../Pages/Education/Education/Education';
 import Home from '../Pages/Home/Home/Home';
 
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
               // loader: () => fetch('http://localhost:5000/courses')
           },
           {
+              path:'/class/:id',
+              element: <Class></Class>,
+              loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+          },
+          {
             path:'/login',
             element: <Login></Login>
           },
@@ -59,14 +65,7 @@ export const router = createBrowserRouter([
             path:'/blog',
             element: <Blog></Blog>
           },
-          {
-            path:'/login',
-            element: <Login></Login>
-          },
-          {
-            path:'/register',
-            element: <Register></Register>
-          },
+         
   
         ]
 
