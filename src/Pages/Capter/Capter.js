@@ -1,12 +1,29 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Capter = () => {
     const educate = useLoaderData();
+    const {title, image, price, description, id} = educate;
     console.log(educate)
     return (
-        <div>
-            <h2>This is all coarse {educate.title}</h2>
+        <div className="card w-9/12 bg-base-300 shadow-xl mx-auto">
+        <figure>
+            <img src={image} alt="Shoes" />
+            
+        </figure>
+        <div className="card-body">
+        <h2 className="card-title">
+        {title}
+        <div className="badge badge-secondary"></div>
+        </h2>
+        <p>{description}</p>
+        <div className="card-actions justify-end">
+        <div className="badge badge-outline">Enrol Noe (free)</div> 
+        <Link to={`/checkout/${id}`}>
+            <div className="badge badge-outline">Get Premium Access</div>
+        </Link>
+        </div>
+        </div>
         </div>
     );
 };

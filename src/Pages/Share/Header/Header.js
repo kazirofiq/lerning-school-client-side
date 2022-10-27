@@ -4,9 +4,16 @@ import { FaSchool, FaUser } from 'react-icons/fa';
 import RightSideNav from '../RightSideNav/RightSideNav';
 import { useContext } from 'react';
 import { AuthContest } from '../../../contexts/AuthProvider/AuthProvider';
+import { Button } from 'react-daisyui';
 
 const Header = () => {
-    const {user} = useContext(AuthContest);
+    const { user, logOut } = useContext(AuthContest);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div className='relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 mb-3'>
            
@@ -63,38 +70,39 @@ const Header = () => {
                                     <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Blog</span>
                                     </Link>
                                 </li>
+                                
                                 <li className="nav-item">
-                                    <Link to="/toggle"
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white lg:text-black md:text-white  hover:opacity-75"
+                                   
+                                  
+                                    <i className="fab fa-pinterest text-lg leading-lg  opacity-75 text-white lg:text-black">
+                                        
+                                    {
+                                        user?.uid ?
+                                        <>
+                                        <span>{user?.displayName}</span>
+                                        <Button variant="light" onClick={handleLogOut}>Log out</Button>
+                                        </>
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register'>Register</Link>
+                                    </>
+                            }
+
+                            
+                                <Link to="/profile"  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white lg:text-black md:text-white  hover:opacity-75"
+                                    
                                     
                                     >
-                                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Toggle</span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to="/login"
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white lg:text-black md:text-white  hover:opacity-75"
-                                    
-                                    >
-                                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Login</span>
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to="/profile"
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white lg:text-black md:text-white  hover:opacity-75"
-                                    
-                                    >
-                                    <i className="fab fa-pinterest text-lg leading-lg  opacity-75">
-                                    
                                     {user?.photoURL?
  
                                      <img className='h-8 rounded-lg' src={user?.photoURL} alt="" />
                                     : 
-                                        <FaUser></FaUser>
+                                        <span><FaUser></FaUser></span>
                                     }
-                        
-                                    </i>
                                     </Link>
+                                    </i>
+                                    
                                 </li>
                                 
                             </ul>

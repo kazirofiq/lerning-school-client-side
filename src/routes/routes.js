@@ -14,6 +14,8 @@ import Home from '../Pages/Home/Home/Home';
 
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Capter from '../Pages/Capter/Capter';
+import ChackoutPage from '../Others/ChackoutPage/ChackoutPage';
+
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +68,12 @@ export const router = createBrowserRouter([
           {
             path:'/blog',
             element: <Blog></Blog>
+          },
+         
+          {
+            path:'/checkout/:id',
+            element: <ChackoutPage></ChackoutPage>,
+            loader: ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`) 
           },
          
   

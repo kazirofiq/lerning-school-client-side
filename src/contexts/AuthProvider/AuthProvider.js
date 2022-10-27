@@ -15,6 +15,21 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider);
     }
    
+    const createUser = (email, password) => {
+       
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const signIn = (email, password) => {
+        // setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    const logOut = () => {
+        return signOut(auth);
+    }
+
+
   useEffect(() =>{
    const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
     console.log('user inside', currentUser);
@@ -28,7 +43,7 @@ const AuthProvider = ({children}) => {
 
 
     
-    const authInfo = {user, providerLogin}
+    const authInfo = {user, providerLogin, logOut, createUser, signIn}
   
     return (
         <AuthContest.Provider value={ authInfo }>

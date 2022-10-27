@@ -14,14 +14,17 @@ const CourseSummeryDetail = ({educate}) => {
             <h2 className="card-title">{title}</h2>
 
             {
-                description.length > 100 ?
-                <p>{description.slice(0, 250) + '...'} <Link to={`/courses/${id}`}>Read More...</Link></p>
+                description.length > 10 ?
+                <p>{description.slice(0, 10) + '...'} <Link to={`/courses/${id}`}>Read More...</Link></p>
                 :
                 <p>{description}</p>
             }
             
             <div className="card-actions">
-            <button className="btn btn-primary">Buy Now</button>
+                <Link to={`/courses/${id}`}>
+                    <button  className="btn btn-primary">Buy Now</button>
+                </Link>
+            
             </div>
             </div>
         
