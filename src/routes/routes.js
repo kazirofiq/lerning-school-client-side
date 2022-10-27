@@ -8,11 +8,12 @@ import Blog from '../Others/Blog/Blog';
 import Profile from '../Others/Profile/Profile';
 import TermsCondition from '../Others/TermsCondition/TermsCondition';
 import Category from '../Pages/Category/Category/Category';
-import Class from '../Pages/Class/Class';
+import Class from '../Pages/Capter/Capter';
 import Education from '../Pages/Education/Education/Education';
 import Home from '../Pages/Home/Home/Home';
 
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import Capter from '../Pages/Capter/Capter';
 
 export const router = createBrowserRouter([
     {
@@ -36,14 +37,15 @@ export const router = createBrowserRouter([
               loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
           },
           {
-              path:'/education/:id',
+              path:'/education',
               element: <Education></Education>,
-              // loader: () => fetch('http://localhost:5000/courses')
+              
           },
           {
-              path:'/class/:id',
-              element: <Class></Class>,
+              path:'/courses/:id',
+              element: <Capter></Capter>,
               loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+             
           },
           {
             path:'/login',

@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaSchool, FaUser } from 'react-icons/fa';
 import RightSideNav from '../RightSideNav/RightSideNav';
+import { useContext } from 'react';
+import { AuthContest } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const {user} = useContext(AuthContest);
     return (
         <div className='relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 mb-3'>
            
@@ -23,6 +26,7 @@ const Header = () => {
                         <div className='lg:hidden'>
                                 <RightSideNav></RightSideNav>
                         </div>
+                        
                     </ul>
                     </div>
                 </div>
@@ -64,7 +68,7 @@ const Header = () => {
                                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white lg:text-black md:text-white  hover:opacity-75"
                                     
                                     >
-                                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Toggle Theem</span>
+                                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Toggle</span>
                                     </Link>
                                 </li>
                                 <li className="nav-item">
@@ -81,7 +85,14 @@ const Header = () => {
                                     
                                     >
                                     <i className="fab fa-pinterest text-lg leading-lg  opacity-75">
+                                    
+                                    {user?.photoURL?
+ 
+                                     <img className='h-8 rounded-lg' src={user?.photoURL} alt="" />
+                                    : 
                                         <FaUser></FaUser>
+                                    }
+                        
                                     </i>
                                     </Link>
                                 </li>

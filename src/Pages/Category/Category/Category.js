@@ -1,11 +1,19 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import CourseSummeryDetail from '../../Share/CoursSummeryDetail/CourseSummeryDetail';
 
 const Category = () => {
-    const course = useLoaderData();
+    const categoryCourse = useLoaderData();
     return (
         <div>
-            <h2>This is Category Page :{course.length}</h2>
+            <h2>This is Category Page :{categoryCourse.length}</h2>
+
+            {
+                categoryCourse.map(educate => <CourseSummeryDetail
+                key={educate.id}
+                educate={educate}
+                ></CourseSummeryDetail>)
+            }
         </div>
     );
 };

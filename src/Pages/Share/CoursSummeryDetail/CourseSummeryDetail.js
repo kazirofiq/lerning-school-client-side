@@ -15,7 +15,7 @@ const CourseSummeryDetail = ({educate}) => {
 
             {
                 description.length > 100 ?
-                <p>{description.slice(0, 250) + '...'} <Link to={`/class/${id}`}>Read More...</Link></p>
+                <p>{description.slice(0, 250) + '...'} <Link to={`/courses/${id}`}>Read More...</Link></p>
                 :
                 <p>{description}</p>
             }

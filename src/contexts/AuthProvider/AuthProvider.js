@@ -1,75 +1,40 @@
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
+import app from '../../firebase/firebase.config';
 
-// import React, { createContext, useEffect, useState } from 'react';
-// import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
-// import app from '../../firebase/firebase.config';
 
-// export const AuthContext = createContext();
-// const auth = getAuth(app);
 
-// const AuthProvider = ({ children }) => {
-//     const [user, setUser] = useState(null);
-//     const [loading, setLoading] = useState(true);
 
-//     const providerLogin = (provider) => {
-//         setLoading(true);
-//         return signInWithPopup(auth, provider);
-//     }
+export const AuthContest = createContext();
+const auth =getAuth(app);
 
-//     const createUser = (email, password) => {
-//         setLoading(true);
-//         return createUserWithEmailAndPassword(auth, email, password)
-//     }
+const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null);
+    
+    const providerLogin = (provider) =>{
+        return signInWithPopup(auth, provider);
+    }
+   
+  useEffect(() =>{
+   const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
+    console.log('user inside', currentUser);
+        setUser(currentUser)
+    });
 
-//     const signIn = (email, password) => {
-//         setLoading(true);
-//         return signInWithEmailAndPassword(auth, email, password);
-//     }
-//     const updateUserProfile = (profile) =>{
-//         return updateProfile(auth.currentUser, profile);
-//     }
+    return () => {
+        unsubscribe();
+    }
+  }, []) 
 
-//     const verifyEmail = () => {
-//         return sendEmailVerification(auth.currentUser)
-//     }
 
-//     const logOut = () => {
-//         setLoading(true);
-//         return signOut(auth);
-//     }
+    
+    const authInfo = {user, providerLogin}
+  
+    return (
+        <AuthContest.Provider value={ authInfo }>
+            {children}
+        </AuthContest.Provider>
+    );
+};
 
-//     useEffect(() => {
-//         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-//             console.log('inside auth state change', currentUser);
-//             if(currentUser === null || currentUser.emailVerified){
-//                 setUser(currentUser);
-//             }
-            
-//             setLoading(false);
-//         });
-
-//         return () => {
-//             unsubscribe();
-//         }
-
-//     }, [])
-
-//     const authInfo = { 
-//         user, 
-//         loading,
-//          updateUserProfile,
-//           providerLogin,
-//            logOut,
-//             createUser,
-//              signIn, 
-//              setLoading,
-//             verifyEmail
-//             };
-
-//     return (
-//         <AuthContext.Provider value={authInfo}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// export default AuthProvider;
+export default AuthProvider;
