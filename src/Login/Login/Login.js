@@ -43,7 +43,6 @@ const Login = () => {
             
                 <div className="form-control">
                 <label className="label">
-                <span className="label-text">Your Email</span>
                 </label>
                 <label className="input-group input-group-vertical">
                 <span>Email</span>
@@ -52,20 +51,19 @@ const Login = () => {
                 </div>
                 <div className="form-control">
                 <label className="label">
-                <span className="label-text">Your Password</span>
                 </label>
                 <label className="input-group input-group-vertical">
                 <span>Password</span>
-                <input type="password" placeholder="info@site.com" name='password' className="input input-bordered" />
+                <input type="password" placeholder="password" name='password' className="input input-bordered" />
                 </label>
                 </div>
                
-                    <button className="btn btn-outline btn-primary mt-3">Login</button>
+                    <button className=" w-full btn btn-outline btn-primary mt-3">Login</button>
                         <div>
                             <p>{error}</p>
                         </div>
                     <Link to='register'>
-                        please register your account
+                    <p>All ready have an account <Link to='/register'><span className='text-blue-700'>Register</span></Link></p>
                     </Link>
                     
                 

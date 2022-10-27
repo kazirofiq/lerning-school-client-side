@@ -1,4 +1,6 @@
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContest } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -8,7 +10,12 @@ const Register = () => {
     const [accepted, setAccepted] = useState(false);
     const {createUser, updateUserProfile, verifyEmail} = useContext(AuthContest);
 
+    const {providerLogin} = useContext(AuthContest);
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
     const handleSubmit = event => {
+    
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -54,7 +61,22 @@ const Register = () => {
     // const handleAccepted = event =>{
     //     setAccepted(event.target.checked);
     // }
-
+    const handleGoogleSign = () =>{
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
+    const handleGithubSign = () =>{
+        providerLogin(githubProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
     return (
         <div className='mx-auto w-1/3'>
 
@@ -63,7 +85,6 @@ const Register = () => {
         
             <div className="form-control">
             <label className="label">
-            <span className="label-text">Your Name</span>
             </label>
             <label className="input-group input-group-vertical">
             <span>Name</span>
@@ -72,7 +93,6 @@ const Register = () => {
             </div>
             <div className="form-control">
             <label className="label">
-            <span className="label-text">Photo URL</span>
             </label>
             <label className="input-group input-group-vertical">
             <span>URL</span>
@@ -81,7 +101,6 @@ const Register = () => {
             </div>
             <div className="form-control">
             <label className="label">
-            <span className="label-text">Your Email</span>
             </label>
             <label className="input-group input-group-vertical">
             <span>Email</span>
@@ -90,7 +109,6 @@ const Register = () => {
             </div>
             <div className="form-control">
             <label className="label">
-            <span className="label-text">Your Password</span>
             </label>
             <label className="input-group input-group-vertical">
             <span>Password</span>
@@ -98,7 +116,17 @@ const Register = () => {
             </label>
             </div>
            
-                <button className="btn btn-outline btn-primary mt-3">Login</button>
+                <button className=" w-full btn btn-outline btn-primary mt-3">Register</button>
+
+                <div className='m-2'>
+                    <p>..........Login with social media..............</p>
+
+                    <div className='flex gap-10 justify-center m-4'>
+                        <FaGoogle onClick={handleGoogleSign} className='text-xl'></FaGoogle>
+                        <FaGithub onClick={handleGithubSign } className='text-xl'></FaGithub>
+                    </div>
+                </div>
+
                 <Link to='login'>
                     <p>All ready have an account <Link to='/login'><span>Login</span></Link></p>
                 </Link>

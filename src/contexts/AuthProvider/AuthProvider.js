@@ -14,6 +14,9 @@ const AuthProvider = ({children}) => {
     const providerLogin = (provider) =>{
         return signInWithPopup(auth, provider);
     }
+    const gitProviderLogin = (githubProvider) =>{
+        return signInWithPopup(auth, githubProvider);
+    }
    
     const createUser = (email, password) => {
        
@@ -43,7 +46,7 @@ const AuthProvider = ({children}) => {
 
 
     
-    const authInfo = {user, providerLogin, logOut, createUser, signIn}
+    const authInfo = {user, providerLogin, logOut, createUser, signIn, gitProviderLogin}
   
     return (
         <AuthContest.Provider value={ authInfo }>
