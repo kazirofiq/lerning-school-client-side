@@ -10,7 +10,7 @@ const Register = () => {
     const [accepted, setAccepted] = useState(false);
     const {createUser, updateUserProfile, verifyEmail} = useContext(AuthContest);
 
-    const {providerLogin} = useContext(AuthContest);
+    const {providerLogin, gitProviderLogin  } = useContext(AuthContest);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -70,7 +70,7 @@ const Register = () => {
         .catch(error => console.error(error))
     }
     const handleGithubSign = () =>{
-        providerLogin(githubProvider)
+        gitProviderLogin (githubProvider)
         .then(result => {
             const user = result.user;
             console.log(user);
@@ -128,7 +128,7 @@ const Register = () => {
                 </div>
 
                 <Link to='login'>
-                    <p>All ready have an account <Link to='/login'><span>Login</span></Link></p>
+                    <p>All ready have an account <Link to='/login'><span className='text-blue-700'>Login</span></Link></p>
                 </Link>
                 
             

@@ -1,10 +1,15 @@
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContest } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
     const {signIn} = useContext(AuthContest);
+    const {providerLogin, gitProviderLogin } = useContext(AuthContest);
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate();
     // const location = useLocation();
     // const from = location.state?.from?.pathname || "/";
@@ -35,6 +40,23 @@ const Login = () => {
         //     setLoading(false);
         // })
     }
+
+    const handleGoogleSign = () =>{
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
+    const handleGithubSign = () =>{
+        gitProviderLogin(githubProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
     return (
         <div className='mx-auto w-1/3'>
 
@@ -62,8 +84,16 @@ const Login = () => {
                         <div>
                             <p>{error}</p>
                         </div>
+                        <div className='m-2'>
+                    <p>..........Login with social media..............</p>
+
+                    <div className='flex gap-10 justify-center m-4'>
+                        <FaGoogle onClick={handleGoogleSign} className='text-xl'></FaGoogle>
+                        <FaGithub onClick={handleGithubSign } className='text-xl'></FaGithub>
+                    </div>
+                </div>
                     <Link to='register'>
-                    <p>All ready have an account <Link to='/register'><span className='text-blue-700'>Register</span></Link></p>
+                    <p>Don't have an account <Link to='/register'><span className='text-blue-700'>Register</span></Link></p>
                     </Link>
                     
                 
