@@ -1,19 +1,19 @@
-// import React, { useContext } from 'react';
-// import { Spinner } from 'react-bootstrap';
-// import { Navigate, useLocation } from 'react-router-dom';
-// import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
-// const PrivateRoute = ({children}) => {
-//     const {user, loading} = useContext(AuthContext);
-//     const  location = useLocation();
+import { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { AuthContest } from '../contexts/AuthProvider/AuthProvider';
 
-//     if(loading){
-//         return  <Spinner animation="border" variant="danger" />
-//     }
+const PrivateRoute = ({children}) => {
+    const {user, loading} = useContext(AuthContest);
+    const  location = useLocation();
 
-//     if(!user){
-//         return <Navigate to="/login" state={{ from: location }} replace />;
-//     }
-//     return children;
-// };
-// export default PrivateRoute;
+    if(loading){
+        return  <div className="radial-progress bg-primary text-primary-content border-4 border-primary" style={{"--value":70}}>70%</div>
+    }
+
+    if(!user){
+        return <Navigate to="/login" state={{from: location}} replace></Navigate>
+    }
+    return children;
+};
+export default PrivateRoute;

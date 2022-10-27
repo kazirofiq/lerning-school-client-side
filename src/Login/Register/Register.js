@@ -117,7 +117,9 @@ const Register = () => {
             </div>
            
                 <button className=" w-full btn btn-outline btn-primary mt-3">Register</button>
-
+                <div>
+                            <p className='text-red-600'>{error}</p>
+                        </div>
                 <div className='m-2'>
                     <p>..........Login with social media..............</p>
 
