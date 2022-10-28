@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Link } from 'react-router-dom';
 import Courses from '../Courses/Courses';
 import Main from '../layout/Main';
 import Login from '../Login/Login/Login';
@@ -80,4 +80,9 @@ export const router = createBrowserRouter([
         ]
 
     },
+    {
+      path:'*',
+      element: <div className='text-center text-5xl text-red-600 mt-4 '>This Page Not Found <span className='text-blue-600 text-sm'><Link to='/home'>click Home</Link></span>
+      </div>
+    }
   ]);
