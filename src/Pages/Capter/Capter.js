@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaPrint } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import Pdf from "react-to-pdf";
 
@@ -20,7 +21,7 @@ const Capter = () => {
         <div className="badge badge-secondary"></div>
         </h2>
         <Pdf targetRef={ref} filename="code-example.pdf">
-        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+        {({ toPdf }) => <button className='flex items-center' onClick={toPdf}><FaPrint></FaPrint>Download <span className='text-3xl font-bold text-red-700'>Pdf</span></button>}
         </Pdf>
         <p>{description}</p>
         <div className="card-actions justify-end">
