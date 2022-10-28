@@ -36,13 +36,13 @@ export const router = createBrowserRouter([
           {
               path:'/courses',
               element: <Courses></Courses>,
-              loader: () => fetch('http://localhost:5000/courses')
+              loader: () => fetch('https://server-side-gamma.vercel.app/courses')
           },
           
           {
               path:'/category/:id',
               element: <Category></Category>,
-              loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
+              loader: ({params}) => fetch(`https://server-side-gamma.vercel.app/category/${params.id}`)
           },
           {
               path:'/education',
@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
           {
               path:'/courses/:id',
               element: <Capter></Capter>,
-              loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
+              loader: ({params}) => fetch(`https://server-side-gamma.vercel.app/courses/${params.id}`)
              
           },
           {
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
           {
             path:'/checkout/:id',
             element: <PrivateRoute><ChackoutPage></ChackoutPage></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`) 
+            loader: ({params}) => fetch(`https://server-side-gamma.vercel.app/checkout/${params.id}`) 
           },
           {
             path:'/faq',

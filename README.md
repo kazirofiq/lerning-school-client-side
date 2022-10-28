@@ -1,4 +1,4 @@
-live website link:
+live website link:https://client-side-assignment.web.app/
 client-side-code link:https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-kazirofiq
 server-side-code:https://github.com/programming-hero-web-course1/b610-lerning-platform-server-side-kazirofiq
 

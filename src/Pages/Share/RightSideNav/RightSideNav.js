@@ -15,7 +15,7 @@ const RightSideNav = () => {
     
 
     useEffect(() =>{
-       fetch('http://localhost:5000/educate-categories') 
+       fetch('https://server-side-gamma.vercel.app/educate-categories') 
        .then(res => res.json())
        .then(data => setCategories(data))
     } , [])
