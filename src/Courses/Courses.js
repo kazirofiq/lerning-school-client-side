@@ -4,8 +4,8 @@ import RightSideNav from '../Pages/Share/RightSideNav/RightSideNav';
 
 const Courses = () => {
     return (
-        <div className="grid lg:grid-cols-3 gap-4 p-5">
-        <div class="col-span-2">
+        <div className="grid lg:grid-cols-4 gap-4 p-5">
+        <div class="col-span-3">
         
             
             <Education></Education>

@@ -9,7 +9,7 @@ const ChackoutPage = () => {
     const notify = () => toast("Thank you buying this Course!");
     return (
         <div>
-            <div className="card w-96 glass">
+            <div className="card w-96 mx-auto glass my-6">
             <figure><img src={image} alt="car!"/></figure>
             <div className="card-body">
             <h2 className="card-title">{title}</h2>

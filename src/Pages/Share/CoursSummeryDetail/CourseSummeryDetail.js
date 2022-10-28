@@ -22,7 +22,7 @@ const CourseSummeryDetail = ({educate}) => {
             
             <div className="card-actions">
                 <Link to={`/courses/${id}`}>
-                    <button  className="btn btn-primary">Buy Now</button>
+                    <button  className="btn  btn-secondary w-full">Course Details</button>
                 </Link>
             
             </div>

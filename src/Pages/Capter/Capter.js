@@ -18,9 +18,9 @@ const Capter = () => {
         </h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-        <div className="badge badge-outline">Enrol Noe (free)</div> 
+        <div className="badge badge-outline text-purple-400">Enrol Noe (free)</div> 
         <Link to={`/checkout/${id}`}>
-            <div className="badge badge-outline">Get Premium Access</div>
+            <div className="badge badge-outline text-fuchsia-600">Get Premium Access</div>
         </Link>
         </div>
         </div>

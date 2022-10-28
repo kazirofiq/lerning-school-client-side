@@ -15,6 +15,7 @@ import Home from '../Pages/Home/Home/Home';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import Capter from '../Pages/Capter/Capter';
 import ChackoutPage from '../Others/ChackoutPage/ChackoutPage';
+import Faq from '../Others/Faq/Faq';
 
 
 export const router = createBrowserRouter([
@@ -74,6 +75,11 @@ export const router = createBrowserRouter([
             path:'/checkout/:id',
             element: <PrivateRoute><ChackoutPage></ChackoutPage></PrivateRoute>,
             loader: ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`) 
+          },
+          {
+            path:'/faq',
+            element: <Faq></Faq>,
+            
           },
          
   

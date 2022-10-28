@@ -1,6 +1,6 @@
 import React from 'react';
-import { Footer } from 'react-daisyui';
 import { Outlet } from 'react-router-dom';
+import Footer from '../Pages/Share/Footer/Footer';
 import Header from '../Pages/Share/Header/Header';
 
 const Main = () => {
