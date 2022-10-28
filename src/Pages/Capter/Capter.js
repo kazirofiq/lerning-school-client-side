@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import Pdf from "react-to-pdf";
+
+const ref = React.createRef();
 
 const Capter = () => {
     const educate = useLoaderData();
     const {title, image, price, description, id} = educate;
     console.log(educate)
     return (
-        <div className="card w-9/12 bg-base-300 shadow-xl mx-auto">
+        <div ref={ref} className="card w-9/12 bg-base-300 shadow-xl mx-auto">
         <figure>
             <img src={image} alt="Shoes" />
             
@@ -16,6 +19,9 @@ const Capter = () => {
         {title}
         <div className="badge badge-secondary"></div>
         </h2>
+        <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => <button onClick={toPdf}>Generate Pdf</button>}
+        </Pdf>
         <p>{description}</p>
         <div className="card-actions justify-end">
         <div className="badge badge-outline text-purple-400">Enrol Noe (free)</div> 

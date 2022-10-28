@@ -1,14 +1,18 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContest } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
     const [error, setError] = useState('');
     const [accepted, setAccepted] = useState(false);
-    const {createUser, updateUserProfile, verifyEmail} = useContext(AuthContest);
+    const {createUser, updateUserProfile, verifyEmail,loading} = useContext(AuthContest);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const {providerLogin, gitProviderLogin  } = useContext(AuthContest);
     const googleProvider = new GoogleAuthProvider();
@@ -30,6 +34,7 @@ const Register = () => {
             console.log(user);
             setError('');
             form.reset();
+            navigate(from, { replace: true });
             // handleUpdateUserProfile(name, photoURL)
             // handleEmailVerification();
             // toast.success('Please verify your email address before login')
@@ -65,7 +70,10 @@ const Register = () => {
         providerLogin(googleProvider)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            console.log(user)
+            navigate(from, { replace: true });
+            
+            
         })
         .catch(error => console.error(error))
     }
@@ -73,7 +81,9 @@ const Register = () => {
         gitProviderLogin (githubProvider)
         .then(result => {
             const user = result.user;
-            console.log(user);
+            console.log(user)
+            navigate(from, { replace: true });
+            
         })
         .catch(error => console.error(error))
     }

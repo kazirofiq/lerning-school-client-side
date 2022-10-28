@@ -2,11 +2,12 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContest } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const {signIn} = useContext(AuthContest);
+    const {signIn, setLoading} = useContext(AuthContest);
     const {providerLogin, gitProviderLogin } = useContext(AuthContest);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -21,6 +22,7 @@ const Login = () => {
         const password = form.password.value;
         signIn(email, password)
         .then(result => {
+            toast.success('Login Success!')
             const user = result.user;
             console.log(user);
             form.reset();
@@ -30,31 +32,35 @@ const Login = () => {
             //     // navigate(from, { replace: true });
             // }
             // else{
-            //     toast.error('Your email is not verified. Please Verify')
+                // toast.error('Your email is not verified. Please Verify')
             // }
         })
         .catch(error => {
             console.error(error)
             setError(error.message)
         })
-        // .finally(() =>{
-        //     setLoading(false);
-        // })
+        .finally(() =>{
+            setLoading(false);
+        })
     }
 
     const handleGoogleSign = () =>{
         providerLogin(googleProvider)
         .then(result => {
+            toast.success('Login Success!')
             const user = result.user;
             console.log(user);
+            navigate(from, { replace: true });
         })
         .catch(error => console.error(error))
     }
     const handleGithubSign = () =>{
         gitProviderLogin(githubProvider)
         .then(result => {
+            toast.success('Login Success!')
             const user = result.user;
             console.log(user);
+            navigate(from, { replace: true });
         })
         .catch(error => console.error(error))
     }
