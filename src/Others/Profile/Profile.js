@@ -1,6 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContest } from '../../contexts/AuthProvider/AuthProvider';
 
 const Profile = () => {
+    const {user} = useContext(AuthContest);
+    
+
+    
+
     return (
         <div className='mx-auto w-1/3'>
 
@@ -13,7 +21,7 @@ const Profile = () => {
             </label>
             <label className="input-group input-group-vertical">
             <span>Name</span>
-            <input type="text" placeholder="Your Name" name='name' className="input input-bordered" required/>
+            <input defaultValue={user?.name} type="text" placeholder="Your Name" name='name' className="input input-bordered" required/>
             </label>
             </div>
             <div className="form-control">
@@ -22,7 +30,7 @@ const Profile = () => {
             </label>
             <label className="input-group input-group-vertical">
             <span>PhotoURL</span>
-            <input type="text" placeholder="Photo URL" name='photoURL' className="input input-bordered" required/>
+            <input defaultValue={user?.photoURL} type="text" placeholder="Photo URL" name='photoURL' className="input input-bordered" required/>
             </label>
             </div>
             <div className="form-control">
@@ -31,7 +39,7 @@ const Profile = () => {
             </label>
             <label className="input-group input-group-vertical">
             <span>Email</span>
-            <input type="Email" placeholder="info@site.com" name='Email' className="input input-bordered" required />
+            <input readOnly defaultValue={user?.email} type="Email" placeholder="info@site.com" name='Email' className="input input-bordered" required />
             </label>
             </div>
             <div className="form-control">
@@ -40,7 +48,7 @@ const Profile = () => {
             </label>
             <label className="input-group input-group-vertical">
             <span>Password</span>
-            <input type="password" placeholder="Your password" name='password' className="input input-bordered" required/>
+            <input defaultValue={user?.password} type="password" placeholder="Your password" name='password' className="input input-bordered" required/>
             </label>
             </div>
            

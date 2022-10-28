@@ -6,7 +6,7 @@ const Category = () => {
     const categoryCourse = useLoaderData();
     return (
         <div>
-            <h2>This is Category Page :{categoryCourse.length}</h2>
+            <h2 className='text-center'>Category:{categoryCourse.length}</h2>
 
             {
                 categoryCourse.map(educate => <CourseSummeryDetail

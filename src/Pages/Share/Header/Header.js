@@ -4,13 +4,12 @@ import { FaSchool, FaUser } from 'react-icons/fa';
 import RightSideNav from '../RightSideNav/RightSideNav';
 import { useContext } from 'react';
 import { AuthContest } from '../../../contexts/AuthProvider/AuthProvider';
-import { Button, Theme } from 'react-daisyui';
-import { useState } from 'react';
+
 
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContest);
-    const [open, setOpen] = useState(false);
+    
     
 
     const handleLogOut = () => {
@@ -124,7 +123,7 @@ const Header = () => {
                                     
                                 </li>
 
-                                <li>
+                                <li className='hidden lg:block'>
                                     <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer text-gray-600">
                                     <span>Left</span>
                                     <span className="relative">
